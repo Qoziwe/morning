@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Good Morning, Adalyat ✨</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Background Canvas for Floating Ambient Particles -->
+    <canvas id="ambient-canvas"></canvas>
+
+    <main class="main-wrapper">
+      <!-- Live Timezone Header -->
+      <header class="timezone-container">
+        <div class="time-card">
+          <span class="location-label">Lekim</span>
+          <span class="time-display" id="lekim-time">--:--</span>
+          <span class="status-badge">☀️ Day</span>
+        </div>
+
+        <div class="timezone-divider">
+          <span class="distance-icon">✈️</span>
+          <span class="hours-diff">-6h</span>
+        </div>
+
+        <div class="time-card">
+          <span class="location-label">Adalyat (Czechia)</span>
+          <span class="time-display" id="adalyat-time">--:--</span>
+          <span class="status-badge">✨ Morning</span>
+        </div>
+      </header>
+
+      <!-- Envelope & Letter Interactive Scene -->
+      <section class="scene-container">
+        <div class="envelope-wrapper" id="envelope">
+          <div class="envelope-back"></div>
+
+          <!-- The Letter -->
+          <article class="letter" id="letter">
+            <div class="letter-content">
+              <div class="letter-header">
+                <span class="letter-date" id="current-date"></span>
+                <h2>Доброе утро, Адалят ✨</h2>
+              </div>
+
+              <div class="letter-body">
+                <p>
+                  Ты сейчас только просыпаешься в Чехии, а у меня за окном уже
+                  день. Но сколько бы километров и часовых поясов нас ни
+                  разделяло, мои мысли каждое утро начинаются с тебя.
+                </p>
+                <blockquote class="song-quote">
+                  “If you like your coffee hot, let me be your coffee pot... I
+                  just wanna be yours.”
+                </blockquote>
+                <p>
+                  Пусть этот день принесет тебе только тепло, легкость и поводы
+                  для искренней улыбки. Очень сильно скучаю и люблю тебя.
+                </p>
+              </div>
+
+              <footer class="letter-footer">
+                <span class="signature">Lekim ❤️</span>
+              </footer>
+            </div>
+          </article>
+
+          <div class="envelope-front"></div>
+          <div class="envelope-top-flap" id="top-flap"></div>
+
+          <!-- Wax Seal / Tap Trigger -->
+          <button class="wax-seal" id="seal-btn" aria-label="Open letter">
+            <span class="seal-icon">💌</span>
+            <span class="seal-prompt">Нажми, чтобы открыть</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Audio Player Indicator (Appears when playing) -->
+      <div class="music-indicator" id="music-indicator">
+        <span class="music-note">🎵</span>
+        <span class="music-title">Arctic Monkeys — I Wanna Be Yours</span>
+      </div>
+    </main>
+
+    <!-- Background Audio Element -->
+    <audio id="bg-music" src="music.mp3" preload="auto" loop></audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>
