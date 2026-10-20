@@ -1,102 +1,207 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
     />
-    <title>Good Morning, Adalyat ✨</title>
-    <!-- Google Fonts -->
+    <title>С добрым утром, любимая ☀️</title>
+    <meta name="description" content="Утренняя романтическая открытка с пожеланиями для любимой" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Background Canvas for Floating Ambient Particles -->
-    <canvas id="ambient-canvas"></canvas>
+    <!-- Background Canvas for Hearts & Sparkles -->
+    <canvas id="particles-canvas"></canvas>
 
-    <main class="main-wrapper">
-      <!-- Live Timezone Header -->
-      <header class="timezone-container">
-        <div class="time-card">
-          <span class="location-label">Lekim</span>
-          <span class="time-display" id="lekim-time">--:--</span>
-          <span class="status-badge">☀️ Day</span>
-        </div>
+    <!-- Ambient floating emojis in background -->
+    <div class="floating-decor" aria-hidden="true">
+      <span class="fdec f1">🌸</span>
+      <span class="fdec f2">✨</span>
+      <span class="fdec f3">🦋</span>
+      <span class="fdec f4">💫</span>
+      <span class="fdec f5">🌷</span>
+    </div>
 
-        <div class="timezone-divider">
-          <span class="distance-icon">✈️</span>
-          <span class="hours-diff">-6h</span>
-        </div>
+    <!-- Main Scene (Fixed 100dvh, flex centered, no window scroll) -->
+    <main class="scene" id="scene">
+      <div class="stage" id="stage">
+        <!-- 1. Envelope Back Wall (solid, behind the letter) -->
+        <div class="env-back env-fall"></div>
 
-        <div class="time-card">
-          <span class="location-label">Adalyat (Czechia)</span>
-          <span class="time-display" id="adalyat-time">--:--</span>
-          <span class="status-badge">✨ Morning</span>
-        </div>
-      </header>
-
-      <!-- Envelope & Letter Interactive Scene -->
-      <section class="scene-container">
-        <div class="envelope-wrapper" id="envelope">
-          <div class="envelope-back"></div>
-
-          <!-- The Letter -->
-          <article class="letter" id="letter">
-            <div class="letter-content">
-              <div class="letter-header">
-                <span class="letter-date" id="current-date"></span>
-                <h2>Доброе утро, Адалят ✨</h2>
-              </div>
-
-              <div class="letter-body">
-                <p>
-                  Ты сейчас только просыпаешься в Чехии, а у меня за окном уже
-                  день. Но сколько бы километров и часовых поясов нас ни
-                  разделяло, мои мысли каждое утро начинаются с тебя.
-                </p>
-                <blockquote class="song-quote">
-                  “If you like your coffee hot, let me be your coffee pot... I
-                  just wanna be yours.”
-                </blockquote>
-                <p>
-                  Пусть этот день принесет тебе только тепло, легкость и поводы
-                  для искренней улыбки. Очень сильно скучаю и люблю тебя.
-                </p>
-              </div>
-
-              <footer class="letter-footer">
-                <span class="signature">Lekim ❤️</span>
-              </footer>
+        <!-- 2. THE SINGLE LETTER (starts folded inside pocket, slides up, unfolds) -->
+        <div class="letter" id="letter">
+          <!-- Creases visible only while folded -->
+          <div class="fold-creases" id="fold-creases">
+            <div class="crease c1"></div>
+            <div class="crease c2"></div>
+            <div class="crease-preview">
+              <span class="cp-heart">💌</span>
+              <span class="cp-text">Для любимой...</span>
             </div>
-          </article>
+          </div>
 
-          <div class="envelope-front"></div>
-          <div class="envelope-top-flap" id="top-flap"></div>
+          <!-- Letter Content (fades in as letter unfolds, scrollable inside card) -->
+          <div class="letter-inner" id="letter-inner">
+            <div class="lt-decor-top">
+              <span>☀️</span>
+              <div class="lt-decor-line"></div>
+              <span>☀️</span>
+            </div>
 
-          <!-- Wax Seal / Tap Trigger -->
-          <button class="wax-seal" id="seal-btn" aria-label="Open letter">
-            <span class="seal-icon">💌</span>
-            <span class="seal-prompt">Нажми, чтобы открыть</span>
-          </button>
+            <h1 class="lt-title">С добрым утром,<br /><em>моя любимая</em> 💗</h1>
+
+            <div class="lt-divider"><span>✦ ✦ ✦</span></div>
+
+            <p class="lt-text lt-lead">
+              Каждое моё утро начинается с мысли о тебе. Даже когда за окном пасмурно и серо,
+              стоит лишь вспомнить твои глаза и твою улыбку — и на душе сразу становится
+              тепло и светло, словно взошло самое ласковое солнце 🌅
+            </p>
+
+            <p class="lt-text">
+              Ты — самое прекрасное и дорогое чудо в моей жизни. Твой смех, твоя нежность,
+              твой голос наполняют каждый мой день смыслом, уютом и искренним счастьем.
+              Я бесконечно благодарен судьбе за то, что ты есть у меня.
+            </p>
+
+            <div class="lt-wishes-list">
+              <div class="lt-wish">
+                <span class="lt-wish-icon">🌸</span>
+                <div class="lt-wish-content">
+                  <strong>Лёгкости и спокойствия</strong>
+                  <p>Пусть твой день начнётся без спешки и суеты, принося только умиротворение и улыбку.</p>
+                </div>
+              </div>
+              <div class="lt-wish">
+                <span class="lt-wish-icon">☕</span>
+                <div class="lt-wish-content">
+                  <strong>Ароматного утреннего кофе</strong>
+                  <p>Пусть каждый глоток дарит бодрость, тепло и чудесное настроение на весь день.</p>
+                </div>
+              </div>
+              <div class="lt-wish">
+                <span class="lt-wish-icon">✨</span>
+                <div class="lt-wish-content">
+                  <strong>Удачи и вдохновения</strong>
+                  <p>Пусть все дела сегодня решаются легко и красиво, а мир радует приятными мелочами.</p>
+                </div>
+              </div>
+              <div class="lt-wish">
+                <span class="lt-wish-icon">💫</span>
+                <div class="lt-wish-content">
+                  <strong>Веры в свои силы</strong>
+                  <p>Помни, какая ты талантливая, умная и неповторимая. У тебя обязательно всё получится!</p>
+                </div>
+              </div>
+              <div class="lt-wish">
+                <span class="lt-wish-icon">🤗</span>
+                <div class="lt-wish-content">
+                  <strong>Моей заботы и нежности</strong>
+                  <p>Посылаю тебе миллион самых тёплых объятий и поцелуев, которые согреют сквозь любые километры.</p>
+                </div>
+              </div>
+            </div>
+
+            <blockquote class="lt-quote">
+              «В мире тысячи рассветов, но самый прекрасный — тот, который я встречаю, думая о тебе.»
+            </blockquote>
+
+            <p class="lt-closing">
+              Улыбнись прямо сейчас, моё счастье! Твоя улыбка освещает весь мой мир. Скучаю безумно и очень жду нашей встречи 🌷
+            </p>
+
+            <!-- Flower illustration under the text -->
+            <div class="lt-flower-frame">
+              <img src="flower.jpg" alt="Нежные пионы и розы" class="lt-flower-img" loading="eager" />
+              <p class="lt-flower-caption">Для самого прекрасного цветка в моей жизни 🌸</p>
+            </div>
+
+            <div class="lt-footer">
+              <span class="lt-hearts">❤️ 💕 ❤️</span>
+              <span class="lt-sig">С бесконечной любовью, навсегда твой ✨</span>
+            </div>
+
+            <button class="lt-replay-btn" id="replay-btn" type="button">
+              <span>💌</span> Сложить обратно
+            </button>
+          </div>
         </div>
-      </section>
 
-      <!-- Audio Player Indicator (Appears when playing) -->
-      <div class="music-indicator" id="music-indicator">
-        <span class="music-note">🎵</span>
-        <span class="music-title">Arctic Monkeys — I Wanna Be Yours</span>
+        <!-- 3. Envelope Front Pocket (solid, full height, curves from top corners, zero gaps) -->
+        <svg class="env-pocket env-fall" viewBox="0 0 300 195" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="pocketGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#f5e4cc" />
+              <stop offset="100%" stop-color="#ebd4b6" />
+            </linearGradient>
+          </defs>
+          <path d="M 0,0 
+                   C 60,35 100,95 150,95 
+                   C 200,95 240,35 300,0 
+                   L 300,181 
+                   Q 300,195 286,195 
+                   L 14,195 
+                   Q 0,195 0,181 
+                   Z"
+                fill="url(#pocketGrad)" />
+          <path d="M 0,195 L 150,95 L 300,195" stroke="rgba(0,0,0,0.06)" stroke-width="1.5" fill="none" />
+        </svg>
+
+        <!-- 4. Envelope Flap (two-sided 3D flip flap, never disappears) -->
+        <div class="env-flap env-fall" id="flap">
+          <div class="flap-face flap-front">
+            <svg viewBox="0 0 300 120" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="flapFrontGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#f2dec7" />
+                  <stop offset="100%" stop-color="#dab890" />
+                </linearGradient>
+              </defs>
+              <path d="M 0,0 L 300,0 L 156,116 Q 150,120 144,116 Z" fill="url(#flapFrontGrad)" />
+              <path d="M 0,0 L 150,116 L 300,0" stroke="rgba(255,255,255,0.35)" stroke-width="1" fill="none" />
+            </svg>
+          </div>
+          <div class="flap-face flap-back">
+            <svg viewBox="0 0 300 120" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="flapBackGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#dab890" />
+                  <stop offset="100%" stop-color="#caa578" />
+                </linearGradient>
+              </defs>
+              <path d="M 0,0 L 300,0 L 156,116 Q 150,120 144,116 Z" fill="url(#flapBackGrad)" />
+              <path d="M 0,0 L 150,116 L 300,0" stroke="rgba(0,0,0,0.06)" stroke-width="1.5" fill="none" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- 5. Envelope Seal (heart button on flap tip) -->
+        <div class="env-seal" id="seal"><span>💗</span></div>
       </div>
+
+      <!-- Tap button below envelope -->
+      <button class="tap-btn" id="tap-btn" type="button">
+        <span class="tap-icon">👆</span>
+        <span>Нажми, чтобы открыть</span>
+      </button>
     </main>
 
-    <!-- Background Audio Element -->
-    <audio id="bg-music" src="music.mp3" preload="auto" loop></audio>
+    <!-- Music toggle pill (top-right) -->
+    <div class="music-pill" id="music-pill">
+      <div class="eq-bars">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <span class="music-label">Музыка</span>
+    </div>
 
+    <audio id="bg-music" src="music.mp3?v=latest" preload="auto" loop></audio>
     <script src="script.js"></script>
   </body>
 </html>
